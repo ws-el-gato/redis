@@ -70,32 +70,14 @@ now run
 ```$ sudo ./rediscluster.sh```
 
 
-## :checkered_flag: Starting ##
-In each server run the following commands
-
-```bash
-$ sudo apt install git
-$ git clone https://github.com/ws-el-gato/redis
-
-# Access
-$ cd redis
-
-# Install dependencies
-$ yarn
-
-# Run the project
-$ yarn start
-
-# The server will initialize in the <http://localhost:3000>
-```
-
-## :memo: License ##
+## License ##
 
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
-Made with :heart: by <a href="https://github.com/ws-el-gato" target="_blank">{{YOUR_NAME}}</a>
+Made with :heart: by <a href="https://github.com/ws-el-gato" target="_blank">ws-el-gato</a>
 
 &#xa0;
 
 <a href="#top">Back to top</a>
+=======

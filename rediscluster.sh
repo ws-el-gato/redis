@@ -8,7 +8,7 @@ cd redis-stable
 sudo make distclean
 sudo make
 sudo mkdir /etc/redis
-sudo chown ec2-user:ec2-user /etc/redis
+sudo chown ubuntu:ubuntu /etc/redis
 sudo cp src/redis-server src/redis-cli /usr/local/bin
 
 cd /usr/local/src/redis-stable/
