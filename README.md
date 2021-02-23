@@ -1,86 +1,101 @@
-Creating Redis cluster and adding server to the existing cluster
+<div align="center" id="top"> 
+  <img src="./.github/app.gif" alt="Redis" />
+
+  &#xa0;
+
+  <!-- <a href="https://redis.netlify.app">Demo</a> -->
+</div>
+
+<h1 align="center">Redis</h1>
+
+<p align="center">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/ws-el-gato/redis?color=56BEB8">
+
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/ws-el-gato/redis?color=56BEB8">
+
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/ws-el-gato/redis?color=56BEB8">
+
+  <img alt="License" src="https://img.shields.io/github/license/ws-el-gato/redis?color=56BEB8">
+
+  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/ws-el-gato/redis?color=56BEB8" /> -->
+
+  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/ws-el-gato/redis?color=56BEB8" /> -->
+
+  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/ws-el-gato/redis?color=56BEB8" /> -->
+</p>
+
+<!-- Status -->
+
+<!-- <h4 align="center"> 
+	🚧  Redis 🚀 Under construction...  🚧
+</h4> 
+
+<hr> -->
+
+<p align="center">
+  <a href="#about">About</a> &#xa0; | &#xa0; 
+  <a href="#Install">How to install</a> &#xa0; | &#xa0;
+  <a href="https://github.com/ws-el-gato" target="_blank">Author</a>
+</p>
+
+<br>
+
+## About ##
 
 The main purpose of this is article is to document how the redis cluster was created  and then how we can add node to the built cluster
+## How to install Redis ##
 
+In each server run the following commands
 
-
-Create a Redis Cluster
-
- created three ubuntu servers
- In each server run the following commands
-$sudo apt install git
-$cd /home
-sudo git clone https://github.com/mediwareinc/hhh.redis.git  (clone hhh-redis git repo)
-cd hhh.redis 
-sudo chmod +x redisbuild.sh
-sudo chmod +x rediscluster.sh
+```bash 
+$ sudo apt install git 
+cd /home 
+sudo git clone https://github.com/ws-el-gato/redis.git (Redis for Ubuntu) 
+cd redis 
+sudo chmod +x redisbuild.sh 
+sudo chmod +x rediscluster.sh 
 sudo ./redisbuild.sh
-Repeat steps 3-9 for each servers created
-at this point all the servers should have two containers running  with up status ( $sudo docker ps -a)
-setting up a cluster  
-in any one of the cluster server edit the rediscluster.sh with the appropriate ip address of the new servers created and save it
-also comment the following line (sudo chown ec2-user:ec2-user /etc/redis )
- now run sudo ./rediscluster.sh
+```
+
+Repeat these steps for each server created. All the servers should have two containers running with up status. To check the status run:
+
+```sudo docker ps -a```
+
+Edit the rediscluster.sh with the appropriate IP address of the new servers created and save it. Also, comment on the following line
+
+```$ sudo chown ubuntu:ubuntu /etc/redis ```
+
+now run
+
+```$ sudo ./rediscluster.sh```
 
 
-while executing this command sudo ./rediscluster.sh the error was thrown
+## :checkered_flag: Starting ##
+In each server run the following commands
 
-upon inspection it was found that the server the redisserver it installed was of higher version and the gcc compiler version (4.8.5) is not compatible so a higher version of gcc need to be installed which was achieved by running the following commands
+```bash
+$ sudo apt install git
+$ git clone https://github.com/ws-el-gato/redis
 
+# Access
+$ cd redis
 
+# Install dependencies
+$ yarn
 
-$sudo apt install ubuntu-release-scl
+# Run the project
+$ yarn start
 
-$sudo apt install devtoolset-7-gcc*
+# The server will initialize in the <http://localhost:3000>
+```
 
-(now enable the temp bash shell )
+## :memo: License ##
 
-$scl enable devtoolset-7 bash
-
-edit the  rediscluster.sh by adding a comment to ( #sudo apt -y install gcc make)
-
-Run the following command
-
-sudo ./rediscluster.sh
-
-
-
-Now the redis cluster will be created 
-
-check the redis cluster nodes by running the following command 
-
-$redis-cli -p 7000 cluster nodes ( will list all the nodes on that cluster)
+This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
+Made with :heart: by <a href="https://github.com/ws-el-gato" target="_blank">{{YOUR_NAME}}</a>
 
-Note: Remember the redis-cli is installed only on the server where you run rediscluster.sh
- hence you will not be able to view the cluster info from other nodes. 
- if you want to view from other nodes you need to run the rediscluster.sh on all servers using the above steps
+&#xa0;
 
-
-
-Adding server to the existing  cluster 
-
-hhhdevredis04.austin.kinnser.com was created with the ip address 10.12.13.214
-
-Steps 3-9 were repeated for this server as well 
-
-after the docker containers are up on this we added this to the above cluster
-
-login to existing cluster server where you can execute the redis-cli command
-
-Then execute the following command
-
-$redis-cli --cluster add-node 10.12.13.214:7000 10.12.13.213:7000
-
-##{  redis-cli --cluster add-node  <new-node-ip:7000> <existing-node-ip:7000> }
-
-#add for the other port
-
-$redis-cli --cluster add-node 10.12.13.214:7001 10.12.13.213:7001
-
-##{  redis-cli --cluster add-node  <new-node-ip:7000> <existing-node-ip:7000> }
-
-verify you  can see all the nodes in cluster by running the following command
-
-$redis-cli -p 7000 cluster nodes
+<a href="#top">Back to top</a>
